@@ -99,7 +99,15 @@ define(function (require) {
          * Import all the frames of the selected Giphy.
          */
         importFrames () {
-            // TODO
+            let selectedGiphy = _.first(this.giphyListView.getSelection());
+            if (!selectedGiphy)
+                return Promise.reject('No Giphy selection');
+            // Ask user where to save frames.
+            return hostService.getFolder('Select where to save frames...', stingray.env.userDownloadDir)
+                .then(folder => this.saveGiphy(selectedGiphy, folder))
+                .then(savedFilePath => this.extractFrames(savedFilePath))
+                .then(extractedFrameFilePaths => hostService.showInExplorer(extractedFrameFilePaths[0]))
+                .catch(err => console.error(err));
         }
 
         /**
@@ -109,7 +117,9 @@ define(function (require) {
          * @returns {*}
          */
         saveGiphy (giphy, folder) {
-            // TODO
+            if (!folder)
+                return Promise.reject('Invalid folder');
+            return giphyClient.download(giphy.id, giphy.url, folder);
         }
 
         /**
@@ -118,7 +128,17 @@ define(function (require) {
          * @returns {*}
          */
         extractFrames (filePath) {
-           // TODO
+            // Dynamically load the native plugin DLL
+            const nativePluginDllPath = require.toUrl('binaries/editor/win64/dev/editor_plugin_w64_dev.dll');
+            if (!stingray.fs.exists(nativePluginDllPath))
+                throw new Error('Giphy editor native plugin does not exists at `' + nativePluginDllPath + '`. Was it compiled?');
+            let pluginId = stingray.loadNativeExtension(nativePluginDllPath);
+            // Call our native function.
+            /** @namespace window.nativeGiphy */
+            let paths = window.nativeGiphy.extractFrames(filePath);
+            // We do not need the plugin anymore, let's dispose of it.
+            stingray.unloadNativeExtension(pluginId);
+            return paths;
         }
 
         /**
