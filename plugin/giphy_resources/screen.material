@@ -1,0 +1,111 @@
+
+shader = {
+	connections = [
+		{
+			destination = {
+				connector_id = "1ee9af1f-65f2-4739-ad28-5ea6a0e68fc3"
+				instance_id = "0db7e749-bf15-4aa0-8dca-286b3d8ff533"
+			}
+			source = {
+				instance_id = "66aa2952-9264-4887-a9a6-8119eaa489c4"
+			}
+		}
+		{
+			destination = {
+				connector_id = "aca690cb-6305-4a2f-bf3d-69183a493db3"
+				instance_id = "2c55a7ad-8c96-4f8d-8b7c-8c1dc3fa4b69"
+			}
+			select = [
+				"rgb"
+			]
+			source = {
+				instance_id = "0db7e749-bf15-4aa0-8dca-286b3d8ff533"
+			}
+		}
+		{
+			destination = {
+				connector_id = "c5823c75-4ae5-4c71-b070-315fa4d03e8e"
+				instance_id = "66aa2952-9264-4887-a9a6-8119eaa489c4"
+			}
+			source = {
+				instance_id = "a464c282-44a3-40ee-a808-8d9541b6ad70"
+			}
+		}
+	]
+	constants = [
+		{
+			connector_id = "242d1648-a626-445b-9534-bccec094112f"
+			id = "46c92d36-a109-48db-8023-84571e9eee7e"
+			instance_id = "66aa2952-9264-4887-a9a6-8119eaa489c4"
+			value = [-1 1]
+		}
+	]
+	groups = [
+	]
+	nodes = [
+		{
+			content_size = [160 0]
+			export = {
+			}
+			id = "a464c282-44a3-40ee-a808-8d9541b6ad70"
+			options = [
+			]
+			position = [-260 420]
+			samplers = {
+			}
+			type = "core/shader_nodes/texture_coordinate0"
+		}
+		{
+			content_size = [160 0]
+			export = {
+			}
+			id = "66aa2952-9264-4887-a9a6-8119eaa489c4"
+			options = [
+			]
+			position = [-60 400]
+			samplers = {
+			}
+			type = "core/shader_nodes/mul"
+		}
+		{
+			content_size = [160 0]
+			export = {
+			}
+			id = "0db7e749-bf15-4aa0-8dca-286b3d8ff533"
+			options = [
+				"fb3f709b-a54a-4e93-ac9f-e9fc76fb8bcd"
+				"5dd59b3d-1762-4a14-9930-7500230ef3db"
+				"1e067464-12d8-4826-9b72-cfd5765003e3"
+			]
+			position = [240 420]
+			samplers = {
+				texture_map = {
+					display_name = "Texture"
+					slot_name = "color_map"
+					ui = {
+					}
+				}
+			}
+			type = "core/shader_nodes/sample_texture"
+		}
+		{
+			content_size = [160 0]
+			export = {
+			}
+			id = "2c55a7ad-8c96-4f8d-8b7c-8c1dc3fa4b69"
+			options = [
+				"4c3163d4-c086-4645-ba1c-0d68a98022a1"
+			]
+			position = [580 440]
+			samplers = {
+			}
+			type = "core/stingray_renderer/output_nodes/unlit_base"
+		}
+	]
+	version = 3
+}
+textures = {
+	color_map = null
+}
+variables = {
+}
