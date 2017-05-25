@@ -1,7 +1,7 @@
 
 data_directory = "../../build/sample_project_data"
 default_startup_level = "sample"
-description = "Create a sample project that demonstrates the usages of the Stingray plugin."
+description = "Create a sample project that demonstrates the usages of the Stingray Giphy plugin."
 libraries = {
 }
 migrations = {
@@ -13,9 +13,23 @@ migrations = {
 		}
 		version = "1.8.0"
 	}
+	navigation = {
+		patches = [
+			"from-C#-module-to-1.0.0"
+			"ensure-gwnav-in-project-boot.package"
+			"from-1.0.0-to-1.0.1"
+		]
+		version = "1.10.0"
+	}
+	wwise = {
+		patches = [
+			"wwise2014.1.6_to_wwise2016.1.3"
+		]
+		version = "1.10.0"
+	}
 }
-name = "Project Sample"
+name = "Giphy"
 reverse_forward_axis = true
 source_directory = "./"
-thumbnail = "sample.svg"
-version = "1.9.0.0"
+thumbnail = "thumbnail.png"
+version = "1.10.0.0"
